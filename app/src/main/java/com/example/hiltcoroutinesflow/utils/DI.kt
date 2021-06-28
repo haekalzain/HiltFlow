@@ -10,8 +10,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Cache
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
@@ -45,30 +45,17 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(
-        headerInterceptor: Interceptor,
         cache: Cache
     ): OkHttpClient {
-
-        val okHttpClientBuilder = OkHttpClient().newBuilder()
-        okHttpClientBuilder.connectTimeout(CONNECTION_TIMEOUT.toLong(), TimeUnit.SECONDS)
-        okHttpClientBuilder.readTimeout(READ_TIMEOUT.toLong(), TimeUnit.SECONDS)
-        okHttpClientBuilder.writeTimeout(WRITE_TIMEOUT.toLong(), TimeUnit.SECONDS)
-        okHttpClientBuilder.cache(cache)
-        okHttpClientBuilder.addInterceptor(headerInterceptor)
-
-
-        return okHttpClientBuilder.build()
-    }
-
-
-    @Provides
-    @Singleton
-    fun provideHeaderInterceptor(): Interceptor {
-        return Interceptor {
-            val requestBuilder = it.request().newBuilder()
-            //hear you can add all headers you want by calling 'requestBuilder.addHeader(name ,  value)'
-            it.proceed(requestBuilder.build())
-        }
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        return OkHttpClient.Builder()
+            .connectTimeout(CONNECTION_TIMEOUT.toLong(), TimeUnit.MINUTES)
+            .readTimeout(READ_TIMEOUT.toLong(), TimeUnit.MINUTES)
+            .writeTimeout(WRITE_TIMEOUT.toLong(), TimeUnit.MINUTES)
+            .cache(cache)
+            .addInterceptor(interceptor)
+            .build()
     }
 
 
