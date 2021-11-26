@@ -1,0 +1,88 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="padding_3">3dp</dimen>
+    <dimen name="padding_5">5dp</dimen>
+    <dimen name="padding_8">8dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="padding_12">12dp</dimen>
+    <dimen name="padding_16">16dp</dimen>
+    <dimen name="padding_24">24dp</dimen>
+    <dimen name="padding_60">60dp</dimen>
+    <dimen name="padding_56">56dp</dimen>
+    <dimen name="padding_120">120dp</dimen>
+
+    <dimen name="margin_4">4dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_12">12dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_24">24dp</dimen>
+    <dimen name="margin_30">30dp</dimen>
+    <dimen name="margin_32">32dp</dimen>
+    <dimen name="margin_34">34dp</dimen>
+    <dimen name="margin_40">40dp</dimen>
+    <dimen name="margin_48">48dp</dimen>
+    <dimen name="margin_56">56dp</dimen>
+    <dimen name="margin_58">58dp</dimen>
+    <dimen name="margin_59">59dp</dimen>
+    <dimen name="margin_60">60dp</dimen>
+    <dimen name="margin_64">64dp</dimen>
+    <dimen name="margin_72">72dp</dimen>
+    <dimen name="margin_93">93dp</dimen>
+
+    <dimen name="nmargin_20">-20dp</dimen>
+
+    //text
+    <dimen name="textSize_8">8sp</dimen>
+    <dimen name="textSize_10">10sp</dimen>
+    <dimen name="textSize_12">12sp</dimen>
+    <dimen name="textSize_13">13sp</dimen>
+    <dimen name="textSize_14">14sp</dimen>
+    <dimen name="textSize_15">15sp</dimen>
+    <dimen name="textSize_16">16sp</dimen>
+    <dimen name="textSize_18">18sp</dimen>
+    <dimen name="textSize_20">20sp</dimen>
+    <dimen name="textSize_22">22sp</dimen>
+    <dimen name="textSize_25">25sp</dimen>
+    <dimen name="textSize_30">30sp</dimen>
+
+    <dimen name="weight_1">1</dimen>
+    <dimen name="weightsum_2">2</dimen>
+
+    // home icon
+    <dimen name="width_home_icon">50dp</dimen>
+    <dimen name="width_home_text">70dp</dimen>
+
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">312dp</dimen>
+
+    <dimen name="height_30">30dp</dimen>
+    <dimen name="height_speedview">230dp</dimen>
+    <dimen name="height_bg_header">60dp</dimen>
+
+    <dimen name="radius_10dp">10dp</dimen>
+    <dimen name="home_icon">25sp</dimen>
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+
+    <dimen name="normal_12">12sp</dimen>
+    <dimen name="text_size_incentive_value">14sp</dimen>
+
+    <dimen name="design_fab_size_normal" tools:override="true">70dp</dimen>
+    <dimen name="design_fab_size_mini" tools:override="true">70dp</dimen>
+    <dimen name="design_fab_image_size" tools:override="true">56dp</dimen>
+    <dimen name="margin_50">50dp</dimen>
+    <dimen name="margin_35">35dp</dimen>
+
+    <dimen name="width_progress_incentive">350dp</dimen>
+    <dimen name="textSize_36">36sp</dimen>
+    <dimen name="textSize_50">50sp</dimen>
+
+    <dimen name="padding_edittext">5dp</dimen>
+    <dimen name="text_16">16sp</dimen>
+    <dimen name="tv22">22sp</dimen>
+
+
+</resources>

@@ -1,10 +1,10 @@
 package com.example.hiltcoroutinesflow.data
 
-import com.google.gson.JsonObject
-import kotlinx.coroutines.flow.Flow
+import com.example.hiltcoroutinesflow.model.HiltResponse
+import retrofit2.Response
 import retrofit2.http.GET
 
 interface ApiRepos {
-    @GET("api/users")
-    suspend fun sampleGet(): JsonObject
+    @GET("api/user")
+    suspend fun sampleGet(): Response<HiltResponse>
 }

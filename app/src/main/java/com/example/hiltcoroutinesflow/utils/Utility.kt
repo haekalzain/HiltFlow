@@ -10,7 +10,7 @@ import java.net.UnknownHostException
 
 class Utility {
     companion object{
-        fun resolveError(e: Exception): State.ErrorState {
+        fun resolveError(e: Exception): Exception {
             var error = e
 
             when (e) {
@@ -40,7 +40,7 @@ class Utility {
             }
 
 
-            return State.ErrorState(error)
+            return error
         }
     }
 }

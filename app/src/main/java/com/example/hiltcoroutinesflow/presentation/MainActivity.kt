@@ -3,13 +3,13 @@ package com.example.hiltcoroutinesflow.presentation
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.example.hiltcoroutinesflow.R
 import com.example.hiltcoroutinesflow.databinding.ActivityMainBinding
+import com.example.hiltcoroutinesflow.utils.ui.CustomDialog
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -17,22 +17,30 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    @Inject
+    lateinit var customDialog: CustomDialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        lifecycleScope.launch {
-            delay(500)
-            viewModel.getSampleResponse()
-                .collect {
-                    when (it) {
-                        is State.DataState -> binding.tvContent.text = "success ${it.data}"
-                        is State.ErrorState -> binding.tvContent.text = "error ${it.exception}"
-                        is State.LoadingState -> binding.tvContent.text = "loading"
-                    }
+        viewModel.getSampleResponse().observe(this, Observer {
+            when (it) {
+                is State.Empty -> {
+                    customDialog.dismiss()
+                    binding.tvContent.text = "empty"
                 }
-        }
+                is State.DataState -> {
+                    customDialog.dismiss()
+                    binding.tvContent.text = "success ${it.data.total_pages} ${it.data.total}"
+                }
+                is State.ErrorState -> {
+                    customDialog.dismiss()
+                    binding.tvContent.text = "error ${it.exception.message}"
+                }
+                is State.LoadingState -> customDialog.showLoading(this)
+            }
+        })
     }
 }
