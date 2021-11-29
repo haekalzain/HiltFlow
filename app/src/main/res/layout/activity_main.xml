@@ -125,6 +125,28 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/input_data_4" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/verif_data_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_48"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_regist">
+
+                <EditText
+                    android:id="@+id/verif_cif_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:hint="Verifikasi Cif ID"
+                    android:inputType="number"
+                    android:text="123" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_verification"
                 android:layout_width="200dp"
@@ -133,27 +155,7 @@
                 android:text="Verifikasi"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_regist" />
-
-            <TextView
-                android:id="@+id/verif_regist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="48dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_verification" />
-
-            <TextView
-                android:id="@+id/verif_result"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="48dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/verif_regist" />
+                app:layout_constraintTop_toBottomOf="@id/verif_data_1" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

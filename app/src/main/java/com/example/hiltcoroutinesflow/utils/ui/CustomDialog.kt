@@ -43,7 +43,7 @@ class CustomDialog @Inject constructor() {
         }
     }
 
-    fun showSuccessDialog(
+    fun showOneButtonDialog(
         context: Context,
         title: String,
         desc: String,

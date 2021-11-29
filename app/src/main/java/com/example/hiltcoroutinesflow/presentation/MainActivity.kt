@@ -1,6 +1,7 @@
 package com.example.hiltcoroutinesflow.presentation
 
 import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -36,23 +37,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.apply {
             btnRegist.setOnClickListener {
-                val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                if (cameraIntent.resolveActivity(packageManager) != null) {
-                    startActivityForResult(cameraIntent, REGIST_IMAGE)
-                    isRegist = true
-                }
-
+                openCamera(true)
             }
 
             btnVerification.setOnClickListener {
-                val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                if (cameraIntent.resolveActivity(packageManager) != null) {
-                    startActivityForResult(cameraIntent, REGIST_IMAGE)
-                    isRegist = false
-                }
+                openCamera(false)
             }
         }
 
+    }
+
+    private fun openCamera(isRegist: Boolean = false) {
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (cameraIntent.resolveActivity(packageManager) != null) {
+            startActivityForResult(cameraIntent, REGIST_IMAGE)
+            this.isRegist = isRegist
+        }
     }
 
     override fun onActivityResult(
@@ -93,18 +93,30 @@ class MainActivity : AppCompatActivity() {
             .observe(this, Observer {
                 when (it) {
                     is State.Empty -> {
-                        customDialog.dismiss()
-                        binding.verifResult.text = "empty"
+                        customDialog.showOneButtonDialog(
+                            this,
+                            "Gagal Verifikasi",
+                            "empty",
+                            DialogInterface.OnDismissListener { customDialog.dismiss() }
+                        )
                     }
                     is State.DataState -> {
-                        customDialog.dismiss()
-                        binding.verifResult.text = "success Verif ${it.data.toString()}"
+                        customDialog.showOneButtonDialog(
+                            this,
+                            "Berhasil Verifikasi",
+                            "success Verif ${it.data.toString()}",
+                            DialogInterface.OnDismissListener { customDialog.dismiss() }
+                        )
                     }
                     is State.ErrorState -> {
-                        customDialog.dismiss()
-                        binding.verifResult.text = "error ${it.exception.message}"
+                        customDialog.showOneButtonDialog(
+                            this,
+                            "Gagal Verifikasi",
+                            "error ${it.exception.message}",
+                            DialogInterface.OnDismissListener { customDialog.dismiss() }
+                        )
                     }
-                    is State.LoadingState -> customDialog.showLoading(this)
+                    is State.LoadingState -> if (it.isLoading) customDialog.showLoading(this) else customDialog.dismiss()
                 }
             })
 
@@ -125,19 +137,30 @@ class MainActivity : AppCompatActivity() {
             .observe(this, Observer {
                 when (it) {
                     is State.Empty -> {
-                        customDialog.dismiss()
-                        binding.verifRegist.text = "empty"
+                        customDialog.showOneButtonDialog(
+                            this,
+                            "Gagal Register",
+                            "empty",
+                            DialogInterface.OnDismissListener { customDialog.dismiss() }
+                        )
                     }
                     is State.DataState -> {
-                        customDialog.dismiss()
-                        binding.verifRegist.text =
-                            "success Register ${it.data.personId} for CifId: ${it.data.cifId}"
+                        customDialog.showOneButtonDialog(
+                            this,
+                            "Berhasil Register",
+                            "success Register ${it.data.personId} for CifId: ${it.data.cifId}",
+                            DialogInterface.OnDismissListener { customDialog.dismiss() }
+                        )
                     }
                     is State.ErrorState -> {
-                        customDialog.dismiss()
-                        binding.verifRegist.text = "error ${it.exception.message}"
+                        customDialog.showOneButtonDialog(
+                            this,
+                            "Gagal Register",
+                            "error ${it.exception.message}",
+                            DialogInterface.OnDismissListener { customDialog.dismiss() }
+                        )
                     }
-                    is State.LoadingState -> customDialog.showLoading(this)
+                    is State.LoadingState -> if (it.isLoading) customDialog.showLoading(this) else customDialog.dismiss()
                 }
             })
     }
