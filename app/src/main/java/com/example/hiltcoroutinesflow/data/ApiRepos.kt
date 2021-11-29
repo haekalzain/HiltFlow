@@ -14,10 +14,10 @@ interface ApiRepos {
     @POST("biometric")
     suspend fun registBiometric(@Body bodyRequest: BiometricRegistRequest): Response<BiometricRegistResponse>
 
-    @POST("biometric/verify/{personId}")
+    @POST("biometric/verify/{cifId}")
     suspend fun verifyBiometric(
-        @Header("X-Correlation-Id") corelationId: String,
-        @Path("personId") personId: String,
+        @Header("X-Correlation-Id") correlationId: String,
+        @Path("cifId") cifId: String,
         @Body bodyRequest: BiometricVerifyRequest
     ): Response<JsonObject>
 }
