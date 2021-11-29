@@ -18,10 +18,10 @@ class RemoteDataSource @Inject constructor(
         getFlowResult { services.registBiometric(bodyRequest) }
 
     override fun submitVerifyBiometric(
-        corelationId: String,
-        personId: String,
+        correlationId: String,
+        cifId: String,
         bodyRequest: BiometricVerifyRequest
     ): Flow<State<JsonObject>> =
-        getFlowResult { services.verifyBiometric(corelationId, personId, bodyRequest) }
+        getFlowResult { services.verifyBiometric(correlationId, cifId, bodyRequest) }
 
 }

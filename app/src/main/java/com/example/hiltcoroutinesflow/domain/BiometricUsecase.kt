@@ -11,7 +11,7 @@ interface BiometricUsecase {
     fun submitRegistBiometric(bodyRequest: BiometricRegistRequest): Flow<State<BiometricRegistResponse>>
 
     fun submitVerifyBiometric(
-        corelationId: String,
+        correlationId: String,
         cifId: String,
         bodyRequest: BiometricVerifyRequest
     ): Flow<State<JsonObject>>
