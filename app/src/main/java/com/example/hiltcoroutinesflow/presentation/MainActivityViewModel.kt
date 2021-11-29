@@ -3,15 +3,44 @@ package com.example.hiltcoroutinesflow.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.hiltcoroutinesflow.domain.SecondSampleUsecase
-import com.example.hiltcoroutinesflow.utils.Utility
+import com.example.hiltcoroutinesflow.domain.BiometricUsecase
+import com.example.hiltcoroutinesflow.model.request.BiometricRegistRequest
+import com.example.hiltcoroutinesflow.model.request.BiometricVerifyRequest
+import com.example.hiltcoroutinesflow.utils.CorelationBuilder
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 @HiltViewModel
-class MainActivityViewModel @Inject constructor(private val sampleUseCase: SecondSampleUsecase) :
+class MainActivityViewModel @Inject constructor(private val biometricUsecase: BiometricUsecase) :
     ViewModel() {
-fun getSampleResponse() = sampleUseCase.submitApproval().asLiveData(viewModelScope.coroutineContext)
+    fun submitRegistBiometric(
+        cifId: Int,
+        cifCode: String,
+        cifName: String,
+        coCode: String,
+        image64: String
+    ) =
+        biometricUsecase.submitRegistBiometric(
+            BiometricRegistRequest(
+                cifId,
+                cifCode,
+                cifName,
+                "terra",
+                coCode,
+                "2",
+                image64
+            )
+        ).asLiveData(viewModelScope.coroutineContext)
+
+    fun submitVerifyBiometric(
+        cifId: String,
+        image64: String
+    ) =
+        biometricUsecase.submitVerifyBiometric(
+            CorelationBuilder.newId(),
+            cifId,
+            BiometricVerifyRequest(
+                image64
+            )
+        ).asLiveData(viewModelScope.coroutineContext)
 }

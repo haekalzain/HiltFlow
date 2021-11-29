@@ -1,6 +1,6 @@
 package com.example.hiltcoroutinesflow.data
 
-import com.example.hiltcoroutinesflow.domain.SecondSampleUsecase
+import com.example.hiltcoroutinesflow.domain.BiometricUsecase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -10,5 +10,5 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 abstract class UseCaseModule {
     @Binds
-    abstract fun provideSecondSampleUseCase(remoteDataSource: RemoteDataSource): SecondSampleUsecase
+    abstract fun provideSecondSampleUseCase(remoteDataSource: RemoteDataSource): BiometricUsecase
 }
